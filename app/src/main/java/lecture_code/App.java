@@ -16,6 +16,9 @@ public class App {
     }
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting(7));
+        if(args.length > 0) {
+            //What to do if there are arguments?
+        }
+        System.out.println(new App().getGreeting(args.length));
     }
 }
