@@ -3,37 +3,7 @@
  */
 package lecture_code;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Scanner; // Import the Scanner class
-
 public class App {
-    public static String getCount0(String query) throws IOException {
-        
-        
-        //List of parameters        
-        String exec = "find /c \""+query+"\" app/src/main/resources/wells.txt";
-      
-            
-        Process process = Runtime.getRuntime().exec(exec);
-        
-        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-        String line;
-        String result="";
-        while ((line = reader.readLine()) != null) {  
-            System.out.println("out : "+ line);          
-            result = line.replaceAll("[^:]*:", "").strip();           
-        }  
-        
-        reader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
-        while ((line = reader.readLine()) != null) {  
-            System.out.println("err : "+line);                      
-        } 
-
-        return result;
-    }
-
     public String getGreeting(int n) {
 
         String greeting = "Hello";
@@ -45,15 +15,10 @@ public class App {
         return greeting +" World!";
     }
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) {
         if(args.length > 0) {
             //What to do if there are arguments?
         }
         System.out.println(new App().getGreeting(args.length));
-        Scanner inputScanner = new Scanner(System.in);
-        System.out.print("Enter a search term: ");
-        String query = inputScanner.nextLine(); // Read user input         
-        System.out.println("Found the search term \'" + query + "\' "+getCount0(query)+" times in \'War of the Worlds\' by Orson Wells.");
-        inputScanner.close();
     }
 }
